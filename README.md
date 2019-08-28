@@ -25,7 +25,6 @@ $\Phi_i$ is the effect which the feature i attributes. Summing all the effects i
 ### Existing Methods:
 1. [LIME(Local interpretable model-agnostic explanations)](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf): perturbing the input of a sample and see how the predictions change, then locally approximate a simple model(explanation model) to the sample. According to the figure showing below, the explanation model which is built for the sample, may not be suitable for the whole complex model but do perform well in local level.
 ![LIME](https://github.com/ITingHung/Interpretable-model-introduction/blob/master/LIME.png "LIME")
-
 LIME Example:
 
 Reference: [Local Interpretable Model-Agnostic Explanations (LIME): An Introduction](https://www.oreilly.com/learning/introduction-to-local-interpretable-model-agnostic-explanations-lime)
