@@ -11,23 +11,34 @@ Feature importance shows the contribution of each feature and interprets the res
 
 ### Trade off between interpretability & accuracy
 As mentioned above, interpretability is crutial to a machine learning model. It is always easy for a simple model(e.g., Linear regression) to interpret the relationship between inputs and outputs through global level feature importance; however, for complex models like deep network, they usually have low interpretability even though their accuracy is much better than simple models. Hence, here comes out an issue: trade off between interpretability and accuracy. For the most part, there is non-linear relationship between features, which made complex models more suitable for prediction. Therefore, some explanation models(g) are created to do the interpretation from **local level feature importance** for complex models(f). Instead of trying to interpret the whole complex model, the explanation models(g) interpret how the complex model behaved for one data point.
+
 <p align="center">
   <img src="./Trade_off.png" alt="Trade off between interpretability & accuracy" title="Trade off between interpretability & accuracy" width="500">
 </p>
 
 ## Interpretable model
 ### Additive Feature Attribution Definition:
+
 <p align="center">
   <img src="./Additive_definition.png" alt="Additive Feature Attribution Definition" title="Additive Feature Attribution Definition" width="700">
 </p>
-$\Phi_i$ is the effect which the feature i attributes. Summing all the effects in explanation model(g) approximates the output of the original model(f).
+
+𝝓i is the effect which the feature i attributes. Summing all the effects in explanation model(g) approximates the output of the original model(f).
 
 ### Existing Methods:
-1. [LIME(Local interpretable model-agnostic explanations)](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf): perturbing the input of a sample and see how the predictions change, then locally approximate a simple model(explanation model) to the sample. According to the figure showing below, the explanation model which is built for the sample, may not be suitable for the whole complex model but do perform well in local level.
+1. [LIME(Local interpretable model-agnostic explanations)](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf): perturbing the input of a sample and see how the predictions change, then locally approximate a simple model(explanation model) to the sample. According to the figure showing below, the explanation model which is built for the sample, is not suitable for the whole complex model but can perform well in local level.
+
 <p align="center">
-  <img src="./LIME.png" alt="LIME" title="LIME" width="500">
+<img src="./LIME.png" alt="LIME" title="LIME" width="500">
 </p>
-For more detail please refer to: [Local Interpretable Model-Agnostic Explanations (LIME): An Introduction](https://www.oreilly.com/learning/introduction-to-local-interpretable-model-agnostic-explanations-lime)
+
+**Objective Function**
+
+<p align="center">
+<img src="./LIME_objective function.png" alt="LIME_objective function" title="LIME_objective function" width="500">
+</p>
+
+  For more examples please refer to: [Local Interpretable Model-Agnostic Explanations (LIME): An Introduction](https://www.oreilly.com/learning/introduction-to-local-interpretable-model-agnostic-explanations-lime)
 
 2. [DeepLIFT](https://arxiv.org/abs/1704.02685):
 
