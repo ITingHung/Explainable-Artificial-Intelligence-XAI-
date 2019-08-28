@@ -23,7 +23,7 @@ As mentioned above, interpretability is crutial to a machine learning model. It 
   <img src="./Additive_definition.png" alt="Additive Feature Attribution Definition" title="Additive Feature Attribution Definition" width="700">
 </p>
 
-𝝓i is the effect which the feature i attributes. Summing all the effects in explanation model(g) approximates the output of the original model(f).
+𝝓<sub>i</sub> is the effect which the feature i attributes. Summing all the effects in explanation model(g) approximates the output of the original model(f).
 
 ### Existing Methods:
 1. [LIME(Local interpretable model-agnostic explanations)](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf): perturbing the input of a sample and see how the predictions change, then locally approximate a simple model(explanation model) to the sample. According to the figure showing below, the explanation model which is built for the sample, is not suitable for the whole complex model but can perform well in local level.
@@ -32,13 +32,23 @@ As mentioned above, interpretability is crutial to a machine learning model. It 
 <img src="./LIME.png" alt="LIME" title="LIME" width="500">
 </p>
 
-**Objective Function**
+For example detail please refer to: [Local Interpretable Model-Agnostic Explanations (LIME): An Introduction](https://www.oreilly.com/learning/introduction-to-local-interpretable-model-agnostic-explanations-lime)
 
 <p align="center">
-<img src="./LIME_objective function.png" alt="LIME_objective function" title="LIME_objective function" width="500">
+<img src="./LIME_objective function.png" alt="LIME_objective function" title="LIME_objective function" width="1000">
 </p>
 
-  For more examples please refer to: [Local Interpretable Model-Agnostic Explanations (LIME): An Introduction](https://www.oreilly.com/learning/introduction-to-local-interpretable-model-agnostic-explanations-lime)
+[Notation]
+f: Complex model (e.g., CNN)
+g: Explanation model (e.g., linear regression)
+Ω(g): Complexity of explanation model g
+x: Original representation
+x': Interpretable representation
+z': Perturbed sample in interpretable representation
+z: Perturbed sample in Original representation
+𝜋<sub>𝑥</sub>(z): Proximity measure between an instance z to x
+D: Distance function (e.g., cosine distance for text, L2 distance for images)
+
 
 2. [DeepLIFT](https://arxiv.org/abs/1704.02685):
 
