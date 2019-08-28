@@ -1,4 +1,4 @@
-# SHAP(SHapley Additive exPlanations) Introduction
+# Interpretable model introduction
 The following are personal study notes based on "[A Unified Approach to Interpreting Model Predictions](http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions)"
 
 ## Introduction
@@ -15,21 +15,18 @@ As mentioned above, interpretability is crutial to a machine learning model. It 
   <img src="./Trade_off.png" alt="Trade off between interpretability & accuracy" title="Trade off between interpretability & accuracy" width="500">
 </p>
 
-## Additive Feature Attribution Methods
-### Definition:
+## Interpretable model
+### Additive Feature Attribution Definition:
 <p align="center">
   <img src="./Additive_definition.png" alt="Additive Feature Attribution Definition" title="Additive Feature Attribution Definition" width="700">
 </p>
-
 $\Phi_i$ is the effect which the feature i attributes. Summing all the effects in explanation model(g) approximates the output of the original model(f).
+
 ### Existing Methods:
 1. [LIME(Local interpretable model-agnostic explanations)](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf): perturbing the input of a sample and see how the predictions change, then locally approximate a simple model(explanation model) to the sample. According to the figure showing below, the explanation model which is built for the sample, may not be suitable for the whole complex model but do perform well in local level.
-<p align="center">
-  <img src="./LIME.png" alt="LIME" title="LIME" width="500">
-</p>
+![LIME](https://github.com/ITingHung/Interpretable-model-introduction/blob/master/LIME.png "LIME")
 
 LIME Example:
-
 
 Reference: [Local Interpretable Model-Agnostic Explanations (LIME): An Introduction](https://www.oreilly.com/learning/introduction-to-local-interpretable-model-agnostic-explanations-lime)
 
