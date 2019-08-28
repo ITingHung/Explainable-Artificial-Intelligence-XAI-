@@ -26,32 +26,66 @@ As mentioned above, interpretability is crutial to a machine learning model. It 
 𝝓<sub>i</sub> is the effect which the feature i attributes. Summing all the effects in explanation model(g) approximates the output of the original model(f).
 
 ### Existing Methods:
-1. [LIME(Local interpretable model-agnostic explanations)](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf): perturbing the input of a sample and see how the predictions change, then locally approximate a simple model(explanation model) to the sample. According to the figure showing below, the explanation model which is built for the sample, is not suitable for the whole complex model but can perform well in local level.
+1. [LIME(Local interpretable model-agnostic explanations)](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf):
+LIME locally approximate a simple model(explanation model) to a sample by perturbing the input and see how the predictions change. According to the figure showing below, the explanation model which is built for the sample, is not suitable for the whole complex model but can perform well in local level.
 
 <p align="center">
 <img src="./LIME.png" alt="LIME" title="LIME" width="500">
 </p>
 
-For example detail please refer to: [Local Interpretable Model-Agnostic Explanations (LIME): An Introduction](https://www.oreilly.com/learning/introduction-to-local-interpretable-model-agnostic-explanations-lime)
+**LIME Example: find an explanation model for an image**
+
+Consider an  frog image was classified by a complex model, the result shows that "tree frog" is the most likely class, followed by "pool table" and "balloon" with lower probabilities.
 
 <p align="center">
-<img src="./LIME_objective function.png" alt="LIME_objective function" title="LIME_objective function" width="1000">
+<img src="./LIME_complex result.png" alt="LIME_complex result" title="LIME_complex result" width="500">
+</p>
+
+In order to interpret the result from the complex model, we use LIME method to build up an explanation model. The first step is to seperate the original image into several interpretable components, which can be viewed as features. Here we use "pixels" for the original image, and "super pixels" for the interpretable components. The super pixel is represent in binary, if an interpretabe component exists in the sample, the value would be 1, if it doesn't the value would be 0. The next step is to randomly pertub the super pixels by turning them off(make the component into gray), then we could get a number of pertubed instances.
+
+<p align="center">
+<img src="./LIME_preturb.png" alt="LIME_preturb" title="LIME_preturb" width="500">
+</p>
+
+In the third step, we use the complex model to classify those pertubed instances and get the prediction result. 
+
+<p align="center">
+<img src="./LIME_preturb in complex.png" alt="LIME_preturb in complex" title="LIME_preturb in complex" width="500">
+</p>
+
+The last step is to build an explanation model through the interpretable components(super pixels) while consider the prediction result from the complex model as the ture target.
+
+<p align="center">
+<img src="./LIME_super pixel.png" alt="LIME_super pixel" title="LIME_super pixel" width="500">
+</p>
+
+Example reference: [Local Interpretable Model-Agnostic Explanations (LIME): An Introduction](https://www.oreilly.com/learning/introduction-to-local-interpretable-model-agnostic-explanations-lime)
+
+**LIME Objective function**
+
+<p align="center">
+<img src="./LIME_objective function.png" alt="LIME_objective function" title="LIME_objective function" width="700">
 </p>
 
 [Notation]
-f: Complex model (e.g., CNN)
-g: Explanation model (e.g., linear regression)
-Ω(g): Complexity of explanation model g
-x: Original representation
-x': Interpretable representation
-z': Perturbed sample in interpretable representation
-z: Perturbed sample in Original representation
-𝜋<sub>𝑥</sub>(z): Proximity measure between an instance z to x
+f: Complex model (e.g., CNN);                                    
+g: Explanation model (e.g., linear regression); 
+Ω(g): Complexity of explanation model g; 
+x: Original representation; 
+x': Interpretable representation; 
+z': Perturbed sample in interpretable representation; 
+z: Perturbed sample in Original representation; 
+𝜋<sub>𝑥</sub>(z): Proximity measure between an instance z to x; 
 D: Distance function (e.g., cosine distance for text, L2 distance for images)
-
 
 2. [DeepLIFT](https://arxiv.org/abs/1704.02685):
 
-3. Shapley value:
+3. Shapley value: Shapley value is a solution concept in cooperative game theory used to divide the reward for each player according to their contributions. In machine learning model, shapley value can be viewed as average marginal contribution to calculate the importance of a feature by comparing what a model predicts with and without the feature.
+
+<p align="center">
+<img src="./Shapley_value.png" alt="Shapley_value" title="Shapley_value" width="500">
+</p>
+
+Reference: [Interpreting complex models with SHAP values](https://medium.com/@gabrieltseng/interpreting-complex-models-with-shap-values-1c187db6ec83)
 
 4. [SHAP(SHapley Additive exPlanations)](http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions)
