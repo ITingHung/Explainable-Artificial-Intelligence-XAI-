@@ -1,5 +1,4 @@
 # Interpretable model introduction
-The following are personal study notes based on
 
 ## Introduction
 **Model interpretability** can be quite important in many applications. Take health care industry for example, if a machine leanring model shows the reason why it classifies a patient to the high risk group of heart disease, then doctors would be able to check out the reasonableness of the result from the model, which increase the user trust. Besides, interpretability also provides the insight for users to improve the model.
@@ -20,7 +19,7 @@ As mentioned above, interpretability is crutial to a machine learning model. It 
 ### Additive Feature Attribution Definition:
 
 <p align="center">
-  <img src="./Additive_definition.png" alt="Additive Feature Attribution Definition" title="Additive Feature Attribution Definition" width="700">
+  <img src="./Additive_definition.png" alt="Additive Feature Attribution Definition" title="Additive Feature Attribution Definition" width="600">
 </p>
 
 𝝓<sub>i</sub> is the effect which the feature i attributes. Summing all the effects in explanation model(g) approximates the output of the original model(f).
@@ -67,15 +66,15 @@ Example reference: [Local Interpretable Model-Agnostic Explanations (LIME): An I
 <img src="./LIME_objective function.png" alt="LIME_objective function" title="LIME_objective function" width="700">
 </p>
 
-[Notation]
-f: Complex model (e.g., CNN);                                    
-g: Explanation model (e.g., linear regression); 
-Ω(g): Complexity of explanation model g; 
-x: Original representation; 
-x': Interpretable representation; 
-z': Perturbed sample in interpretable representation; 
-z: Perturbed sample in Original representation; 
-𝜋<sub>𝑥</sub>(z): Proximity measure between an instance z to x; 
+[Notation]  
+f: Complex model (e.g., CNN)                                    
+g: Explanation model (e.g., linear regression)  
+Ω(g): Complexity of explanation model g  
+x: Original representation  
+x': Interpretable representation  
+z': Perturbed sample in interpretable representation  
+z: Perturbed sample in Original representation  
+𝜋<sub>𝑥</sub>(z): Proximity measure between an instance z to x  
 D: Distance function (e.g., cosine distance for text, L2 distance for images)
 
 2. [DeepLIFT](https://arxiv.org/abs/1704.02685):
@@ -85,6 +84,10 @@ D: Distance function (e.g., cosine distance for text, L2 distance for images)
 <p align="center">
 <img src="./Shapley_value.png" alt="Shapley_value" title="Shapley_value" width="500">
 </p>
+
+**Shapley Value Example**
+
+
 
 Reference: [Interpreting complex models with SHAP values](https://medium.com/@gabrieltseng/interpreting-complex-models-with-shap-values-1c187db6ec83)
 
