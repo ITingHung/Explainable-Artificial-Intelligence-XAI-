@@ -1,4 +1,4 @@
-# Interpretable model introduction
+# Interpretable models introduction
 
 ## Introduction
 **Model interpretability** can be quite important in many applications. Take health care industry for example, if a machine leanring model shows the reason why it classifies a patient to the high risk group of heart disease, then doctors would be able to check out the reasonableness of the result from the model, which increase the user trust. Besides, interpretability also provides the insight for users to improve the model.
