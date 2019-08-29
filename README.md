@@ -26,7 +26,7 @@ As mentioned above, interpretability is crutial to a machine learning model. It 
 
 ### Existing Methods:
 1. [LIME(Local interpretable model-agnostic explanations)](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf):
-LIME locally approximate a simple model(explanation model) to a sample by perturbing the input and see how the predictions change. According to the figure showing below, the explanation model which is built for the sample, is not suitable for the whole complex model but can perform well in local level.
+LIME is a **Model-Agnostic Approximations** which locally approximate a simple model(explanation model) to a sample by perturbing the input and see how the predictions change. According to the figure showing below, the explanation model which is built for the sample, is not suitable for the whole complex model but can perform well in local level.
 
 <p align="center">
 <img src="./LIME.png" alt="LIME" title="LIME" width="500">
@@ -34,7 +34,7 @@ LIME locally approximate a simple model(explanation model) to a sample by pertur
 
 **LIME Example: find an explanation model for an image**
 
-Consider an  frog image was classified by a complex model, the result shows that "tree frog" is the most likely class, followed by "pool table" and "balloon" with lower probabilities.
+Consider a frog image was classified by a complex model, the result shows that "tree frog" is the most likely class, followed by "pool table" and "balloon" with lower probabilities.
 
 <p align="center">
 <img src="./LIME_complex result.png" alt="LIME_complex result" title="LIME_complex result" width="500">
@@ -77,17 +77,54 @@ z: Perturbed sample in Original representation
 𝜋<sub>𝑥</sub>(z): Proximity measure between an instance z to x  
 D: Distance function (e.g., cosine distance for text, L2 distance for images)
 
-2. [DeepLIFT](https://arxiv.org/abs/1704.02685):
+2. [DeepLIFT](https://arxiv.org/abs/1704.02685): DeepLIFT is a **Model-Speciﬁc Approximations** which is used for deep learning model. DeepLIFT can be viewd as an improved version of the gradient. 
 
-3. Shapley value: Shapley value is a solution concept in cooperative game theory used to divide the reward for each player according to their contributions. In machine learning model, shapley value can be viewed as average marginal contribution to calculate the importance of a feature by comparing what a model predicts with and without the feature.
+**Gradient Example**  
+The feature importance calculate from the gradient is by multiplying the input(x) with the weight: 
+
+<p align="center">
+<img src="./DeepLIFT_gradient feature importance.png" alt="DeepLIFT_gradient feature importance" title="DeepLIFT_gradient feature importance" width="500">
+</p>
+
+In linear regression, it is reasonable to calculate feature contributions from the gradient; however it is not suitable for nonlinear models. Below is an example that shows the problem the gradient encounters in a nonlinear model:  
+
+<p align="center">
+<img src="./DeepLIFT_gradient.png" alt="DeepLIFT_gradient" title="DeepLIFT_gradient" width="500">
+</p>
+
+Because there is bias in h<sub>2</sub> function, the contribution calculate from the gradient method is unreasonalble to the actual output.
+
+**DeepLIFT Example**  
+DeepLIFT consider the slope instead of the gradient, hence the feature importance become:
+
+<p align="center">
+<img src="./DeepLIFT_feature importance.png" alt="DeepLIFT_feature importance" title="DeepLIFT_feature importance" width="300">
+</p>
+
+Deciding the baseline inputs is crutial and might require domain expertise.
+
+<p align="center">
+<img src="./DeepLIFT.png" alt="DeepLIFT" title="DeepLIFT" width="500">
+</p>
+
+[Notation]  
+m: Multiplier(slope)  
+C: Feature Importance
+
+Example reference: [DeepLIFT Part 3: Nuts & Bolts (1)](https://www.youtube.com/watch?v=f_iAM0NPwnM&list=PLJLjQOkqSRTP3cLB2cOOi_bQFw6KPGKML&index=3) 
+
+Reference: [Interpretable Neural Networks](https://towardsdatascience.com/interpretable-neural-networks-45ac8aa91411)
+
+3. Shapley value: Shapley value is a solution concept in cooperative game theory used to divide the reward for each player according to their contributions. In machine learning model, shapley value can be viewed as average marginal contribution to calculate the importance of a feature by comparing what a model predicts with and without the feature. The order in which a model sees features can affect its predictions, hence every possible order should be considered.
 
 <p align="center">
 <img src="./Shapley_value.png" alt="Shapley_value" title="Shapley_value" width="500">
 </p>
 
-**Shapley Value Example**
-
-
+[Notation]  
+F: the set of all features; S⊆F  
+f<sub>S∪{i}</sub> : model trained with feature i  
+f<sub>S</sub>: model trained without feature i  
 
 Reference: [Interpreting complex models with SHAP values](https://medium.com/@gabrieltseng/interpreting-complex-models-with-shap-values-1c187db6ec83)
 
