@@ -109,7 +109,7 @@ Below is the same example that uses DeepLIFT to calculate the feature contributi
 </p>
 
 [Notation]  
-m: Multiplier(slope)  
+m: Multiplier (slope)  
 C: Feature Importance
 
 Deciding the baseline inputs is crutial and might require domain expertise. Take MNIST digits dataset for example, since all the images are white digit with black background, it is reasonable to choose a black image as the baseline.
@@ -133,6 +133,18 @@ F: the set of all features; S⊆F
 f<sub>S∪{i}</sub> : model trained with feature i  
 f<sub>S</sub>: model trained without feature i  
 
+**Properties of Shapley value**
+1. Local accuracy: the explanation model g(x') should have the same result as the original complex model f(x)
+
+2. Missingness: when a feature is missing, the importance of this feature 𝝓 should be zero (meaning no impact to the model)
+
+3. Consistency: if a feature i has higher impact in model A than model B, then the importance 𝝓<sub>i</sub> in model A should always be larger than the one in model B
+
+Young (1985) had proved that Shapley values are the only set of values that satisfy three axioms similar to properties mentioned above and a ﬁnal property that is redundant in this setting.
+
 Reference: [Interpreting complex models with SHAP values](https://medium.com/@gabrieltseng/interpreting-complex-models-with-shap-values-1c187db6ec83)
 
-#### 4. [SHAP(SHapley Additive exPlanations)](http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions)
+#### 4. [SHAP(SHapley Additive exPlanations) values](http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions):
+Since every possible orders should be considered in shapley values, when there is lots of features, it will be computationally unfeasible for calculating shapley values. Hence, SHAP values are introduced.
+
+
