@@ -25,7 +25,7 @@ As mentioned above, interpretability is crutial to a machine learning model. It 
 𝝓<sub>i</sub> is the effect which the feature i attributes. Summing all the effects in explanation model(g) approximates the output of the original model(f).
 
 ### Existing Methods:
-1.[LIME(Local interpretable model-agnostic explanations)](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf):
+#### 1. [LIME(Local interpretable model-agnostic explanations)](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf):
 LIME is a **Model-Agnostic Approximations** which locally approximate a simple model(explanation model) to a sample by perturbing the input and see how the predictions change. According to the figure showing below, the explanation model which is built for the sample, is not suitable for the whole complex model but can perform well in local level.
 
 <p align="center">
@@ -63,7 +63,7 @@ Example reference: [Local Interpretable Model-Agnostic Explanations (LIME): An I
 **LIME Objective function**
 
 <p align="center">
-<img src="./LIME_objective function.png" alt="LIME_objective function" title="LIME_objective function" width="700">
+<img src="./LIME_objective function.png" alt="LIME_objective function" title="LIME_objective function" width="500">
 </p>
 
 [Notation]  
@@ -77,7 +77,8 @@ z: Perturbed sample in Original representation
 𝜋<sub>𝑥</sub>(z): Proximity measure between an instance z to x  
 D: Distance function (e.g., cosine distance for text, L2 distance for images)
 
-2.[DeepLIFT](https://arxiv.org/abs/1704.02685): DeepLIFT is a **Model-Speciﬁc Approximations** which is used for deep learning model. DeepLIFT can be viewd as an improved version of the gradient. 
+#### 2. [DeepLIFT](https://arxiv.org/abs/1704.02685): 
+DeepLIFT is a **Model-Speciﬁc Approximations** which is used for deep learning model. DeepLIFT can be viewd as an improved version of the gradient. 
 
 **Gradient Example**  
 In the gradient method, the feature contribution is calculated by multiplying the input(x) with the weight: 
@@ -120,7 +121,8 @@ Deciding the baseline inputs is crutial and might require domain expertise. Take
 Reference: [Interpretable Neural Networks](https://towardsdatascience.com/interpretable-neural-networks-45ac8aa91411)  
 Example reference: [DeepLIFT Part 3: Nuts & Bolts (1)](https://www.youtube.com/watch?v=f_iAM0NPwnM&list=PLJLjQOkqSRTP3cLB2cOOi_bQFw6KPGKML&index=3)
 
-3.Shapley value: Shapley value is a solution concept in cooperative game theory used to divide the reward for each player according to their contributions. In machine learning model, shapley value can be viewed as average marginal contribution to calculate the importance of a feature by comparing what a model predicts with and without the feature. The order in which a model sees features can affect its predictions, hence every possible order should be considered.
+#### 3. Shapley value: 
+Shapley value is a solution concept in cooperative game theory used to divide the reward for each player according to their contributions. In machine learning model, shapley value can be viewed as average marginal contribution to calculate the importance of a feature by comparing what a model predicts with and without the feature. The order in which a model sees features can affect its predictions, hence every possible order should be considered.
 
 <p align="center">
 <img src="./Shapley_value.png" alt="Shapley_value" title="Shapley_value" width="500">
@@ -133,4 +135,4 @@ f<sub>S</sub>: model trained without feature i
 
 Reference: [Interpreting complex models with SHAP values](https://medium.com/@gabrieltseng/interpreting-complex-models-with-shap-values-1c187db6ec83)
 
-4.[SHAP(SHapley Additive exPlanations)](http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions)
+#### 4. [SHAP(SHapley Additive exPlanations)](http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions)
