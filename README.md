@@ -19,7 +19,7 @@ Feature importance shows the contribution of each feature and interprets the res
 ### Additive Feature Attribution Definition:
 
 <p align="center">
-  <img src="./Additive_definition.png" alt="Additive Feature Attribution Definition" title="Additive Feature Attribution Definition" width="600">
+  <img src="./Additive_definition.png" alt="Additive Feature Attribution Definition" title="Additive Feature Attribution Definition" width="700">
 </p>
 
 𝝓<sub>i</sub> is the effect which the feature i attributes. Summing all the effects in explanation model(g) approximates the output of the original model(f).
@@ -58,7 +58,7 @@ The last step is to build an explanation model through the interpretable compone
 <img src="./LIME_super pixel.png" alt="LIME_super pixel" title="LIME_super pixel" width="500">
 </p>
 
-Example reference: [Local Interpretable Model-Agnostic Explanations (LIME): An Introduction](https://www.oreilly.com/learning/introduction-to-local-interpretable-model-agnostic-explanations-lime)
+Example & figure reference: [Local Interpretable Model-Agnostic Explanations (LIME): An Introduction](https://www.oreilly.com/learning/introduction-to-local-interpretable-model-agnostic-explanations-lime)
 
 **LIME Objective function**
 
@@ -119,7 +119,7 @@ Deciding the baseline inputs is crutial and might require domain expertise. Take
 </p>
 
 Reference: [Interpretable Neural Networks](https://towardsdatascience.com/interpretable-neural-networks-45ac8aa91411)  
-Example reference: [DeepLIFT Part 3: Nuts & Bolts (1)](https://www.youtube.com/watch?v=f_iAM0NPwnM&list=PLJLjQOkqSRTP3cLB2cOOi_bQFw6KPGKML&index=3)
+Example & figure reference: [DeepLIFT Part 3: Nuts & Bolts (1)](https://www.youtube.com/watch?v=f_iAM0NPwnM&list=PLJLjQOkqSRTP3cLB2cOOi_bQFw6KPGKML&index=3)
 
 #### 3. Shapley value: 
 Shapley value is a solution concept in cooperative game theory used to divide the reward for each player according to their contributions. In machine learning model, shapley value can be viewed as average marginal contribution to calculate the importance of a feature by comparing what a model predicts with and without the feature. The order in which a model sees features can affect its predictions, hence every possible order should be considered.
@@ -147,4 +147,11 @@ Reference: [Interpreting complex models with SHAP values](https://medium.com/@ga
 #### 4. [SHAP(SHapley Additive exPlanations) values](http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions):
 Since every possible orders should be considered in shapley values, when there is lots of features, it will be computationally unfeasible for calculating shapley values. Hence, SHAP values are introduced.
 
+1. Kernel SHAP (Linear LIME + Shapley values): Kernal SHAP is a **Model-Agnostic Approximations** which makes Linear LIME recovers the Shapley values by adjusting loss function L, weighting kernel π<sub>x'</sub> and regularization term Ω.
+
+<p align="center">
+<img src="./Kernal SHAP_objective function.png" alt="Kernal SHAP_objective function" title="Kernal SHAP_objective function" width="500">
+</p>
+
+2. Deep SHAP (DeepLIFT + Shapley values): Deep SHAP is a **Model-Specific Approximations**
 
