@@ -17,12 +17,21 @@ Feature importance shows the contribution of each feature and interprets the res
 
 ## Interpretable model
 ### Additive Feature Attribution Definition:
+Explanation models use simpliﬁed inputs x' that map to the original inputs through a mapping function x = h<sub>𝑥</sub>(x').
 
 <p align="center">
-  <img src="./Additive_definition.png" alt="Additive Feature Attribution Definition" title="Additive Feature Attribution Definition" width="700">
+  <img src="./Additive_definition.png" alt="Additive Feature Attribution Definition" title="Additive Feature Attribution Definition" width="500">
 </p>
 
-𝝓<sub>i</sub> is the effect which the feature i attributes. Summing all the effects in explanation model(g) approximates the output of the original model(f).
+Summing all the effects 𝝓 in explanation model(g) approximates the output of the original model(f).
+
+[Notation]                                 
+g: Explanation model (e.g., linear regression)   
+𝝓<sub>i</sub>: Feature i contribution  
+x: Sample in original representation  
+x': Sample in interpretable representation     
+z: Perturbed sample in original representation  
+z': Perturbed sample in interpretable representation 
 
 ### Existing Methods:
 #### 1. [LIME(Local interpretable model-agnostic explanations)](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf):
@@ -70,10 +79,10 @@ Example & figure reference: [Local Interpretable Model-Agnostic Explanations (LI
 f: Complex model (e.g., CNN)                                    
 g: Explanation model (e.g., linear regression)  
 Ω(g): Complexity of explanation model g  
-x: Original representation  
-x': Interpretable representation  
-z': Perturbed sample in interpretable representation  
-z: Perturbed sample in Original representation  
+x: Sample in original representation  
+x': Sample in interpretable representation   
+z: Perturbed sample in original representation
+z': Perturbed sample in interpretable representation 
 𝜋<sub>𝑥</sub>(z): Proximity measure between an instance z to x  
 D: Distance function (e.g., cosine distance for text, L2 distance for images)
 
@@ -153,5 +162,5 @@ Since every possible orders should be considered in shapley values, when there i
 <img src="./Kernal SHAP_objective function.png" alt="Kernal SHAP_objective function" title="Kernal SHAP_objective function" width="500">
 </p>
 
-2. Deep SHAP (DeepLIFT + Shapley values): Deep SHAP is a **Model-Specific Approximations**
+2. Deep SHAP (DeepLIFT + Shapley values): Deep SHAP is a **Model-Specific Approximations** which is used for deep learning model.
 
