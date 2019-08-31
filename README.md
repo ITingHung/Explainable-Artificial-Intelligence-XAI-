@@ -27,7 +27,7 @@ Summing all the effects 𝝓 in explanation model(g) approximates the output of 
 
 [Notation]                                 
 g: Explanation model (e.g., linear regression)   
-𝝓<sub>i</sub>: Feature i contribution  
+𝝓<sub>i</sub>: Contribution of feature i   
 x: Sample in original representation  
 x': Sample in interpretable representation     
 z: Perturbed sample in original representation  
@@ -162,5 +162,14 @@ Since every possible orders should be considered in shapley values, when there i
 <img src="./Kernal SHAP_objective function.png" alt="Kernal SHAP_objective function" title="Kernal SHAP_objective function" width="500">
 </p>
 
-2. Deep SHAP (DeepLIFT + Shapley values): Deep SHAP is a **Model-Specific Approximations** which is used for deep learning model.
+2. Deep SHAP (DeepLIFT + Shapley values): Deep SHAP is a **Model-Specific Approximations** which is adapted from DeepLIFT to approximate Shapley values for deep learning models. Deep SHAP recursively passing multipliers backwards through the network to combine SHAP values of smaller components into SHAP values for the whole network.
 
+<p align="center">
+<img src="./DeepSHAP.png" alt="DeepSHAP" title="DeepSHAP" width="500">
+</p>
+
+[Notation]  
+m: Multiplier (slope)  
+𝝓<sub>i</sub>: Contribution of feature i
+
+## SHAP Implementation
