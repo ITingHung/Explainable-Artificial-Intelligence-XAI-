@@ -173,3 +173,4 @@ m: Multiplier (slope)
 𝝓<sub>i</sub>: Contribution of feature i
 
 ## SHAP Implementation
+Below is the implementation about an application of SHAP value.
