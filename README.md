@@ -8,10 +8,10 @@
 - [Interpretable model](#Interpretable-model)
     - [Additive Feature Attribution Definition](#Additive-Feature-Attribution-Definition)
     - [Existing Methods](#Existing-Methods)
-        - [LIME](#1.-[LIME])
-        - [DeepLIFT](#2.-[DeepLIFT])
-        - [Shapley values](#3.-Shapley-values)
-        - [SHAP values](#4.-[SHAP-values])
+     [LIME](#1.-[LIME])
+         [DeepLIFT](#2.-[DeepLIFT])
+         [Shapley values](#3.-Shapley-values)
+         [SHAP values](#4.-[SHAP-values])
 
 - [SHAP Implementation](#SHAP-Implementation)
 
