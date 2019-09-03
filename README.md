@@ -240,7 +240,7 @@ precision | recall | f1-score
 :--------:|:------:|:--------:
 0.843     | 0.796  | 0.815
 
-Since there is confuse between the first class "Bumps" and the forth class "Other_Faults", the use of SHAP values could help to show the reason of the misclassification.  
+Since there is confuse between the first class "Bumps" and the forth class "Other_Faults", the use of SHAP values can help to show the reason of the misclassification.  
 
 ```
 import shap
@@ -270,7 +270,7 @@ for i in range(len(y_test_new)):
 false_df = pd.DataFrame(false_info, columns=['id','false_type'])
 ```
 
-Because Random Forest Classifier is choosen in this example, here I use [TressExplainer](https://arxiv.org/abs/1905.04610) for calculate SHAP values. Below visualizes the error prediction's explanation.
+Because Random Forest Classifier is choosen in this example, here I use [TressExplainer](https://arxiv.org/abs/1905.04610) for calculating SHAP values. Below shows the visualizaiton of one error prediction's explanation.
 
 ```
 # load JS visualization code to notebook
@@ -291,10 +291,10 @@ shap.force_plot(explainer.expected_value[1], shap_values[1][13,:], x_test_new_re
 <img src="./image/visualSHAP_OFaults.png" alt="visualSHAP_OFaults" title="visualSHAP_OFaults" width="1000">
 </p>
 
-To find out the reason of misclassification, extract top five features that mislead the probability of classification in each error predicted sample.
+To find out the reason of misclassification, extract top five features that mislead the probability of classification in each error predicted sample, and then calculates the frequency of these features.
 
 ```
-#
+#  extract top five features that mislead the probability of classification
 topfive_index = []
 j=0
 for i in range(len(false_info)):
@@ -304,20 +304,14 @@ for i in range(len(false_info)):
         topfive_index.append(np.argsort(shap_values[1][false_info[i][0],:])[-5:][::-1])
 topfive_df = pd.DataFrame(topfive_index, columns=['1st','2nd','3rd','4th','5th'])
 topfive_df.head()
+
+false_t = pd.concat([topfive_df, false_df], axis=1)
+
+# count the frequecy of features
+counter_t = Counter()
+for i in ['1st','2nd','3rd','4th','5th']:
+    counter_t += Counter(false_t[i].value_counts().to_dict())
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
