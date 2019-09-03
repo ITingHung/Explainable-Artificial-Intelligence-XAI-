@@ -8,12 +8,14 @@
 - [Interpretable model](#Interpretable-model)
     - [Additive Feature Attribution Definition](#Additive-Feature-Attribution-Definition)
     - [Existing Methods](#Existing-Methods)
-         - [LIME](#1-LIME)
-         - [DeepLIFT](#2-DeepLIFT)
-         - [Shapley values](#3-Shapley-values)
-         - [SHAP values](#4-SHAP-values)
+         1. [LIME](#1-LIME)
+         2. [DeepLIFT](#2-DeepLIFT)
+         3. [Shapley values](#3-Shapley-values)
+         4. [SHAP values](#4-SHAP-values)
 
 - [SHAP Implementation](#SHAP-Implementation)
+
+- [Citations](#Citations)
 
 ## Introduction
 **Model interpretability** can be quite important in many applications. Take health care industry for example, if a machine learning model shows the reason why it classifies a patient to the high risk group of heart disease, then doctors would be able to check out the reasonableness of the result from the model, which increase the user trust. Besides, interpretability also provides the insight for users to improve the model.
@@ -296,7 +298,7 @@ for i in range(len(y_test_new)):
 false_df = pd.DataFrame(false_info, columns=['id','false_type'])
 ```
 
-Because Random Forest Classifier is choosen in this example, here I use [TressExplainer](https://arxiv.org/abs/1905.04610) for calculating SHAP values. Below shows the visualizaiton of one error prediction's explanation.
+Because Random Forest Classifier is choosen in this example, here I use [TreeExplainer](https://arxiv.org/abs/1905.04610) for calculating SHAP values. Below shows the visualizaiton of one error prediction's explanation.
 
 ```
 # load JS visualization code to notebook
@@ -353,3 +355,12 @@ Rank | Feature
 8    | Orientation_Index
 9    | Length_of_Conveyer
 10   | Minimum_of_Luminosity
+
+
+## Citations
+LIME: [“Why Should I Trust You?” Explaining the Predictions of Any Classifier
+](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf)  
+DeepLIFT: [Learning Important Features Through Propagating Activation Differences](https://arxiv.org/abs/1704.02685)  
+SHAP Values: [A Unified Approach to Interpreting Model Predictions](http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions)  
+TreeExplainer: [Explainable AI for Trees: From Local Explanations to Global Understanding](https://arxiv.org/abs/1905.04610)
+
