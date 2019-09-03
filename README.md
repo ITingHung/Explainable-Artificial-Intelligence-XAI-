@@ -2,36 +2,36 @@
 
 **Table of Contents**
 - [Introduction](#Introduction)
-    - [Trade off between interpretability & accuracy](#Trade_off)
-    - [Feature importance](#Feature_importance)
+    - [Trade off between interpretability and accuracy](#Trade-off-between-interpretability-and-accuracy)
+    - [Feature importance](#Feature-importance)
 
-- [Interpretable model](#Interpretable_model)
-    - [Additive Feature Attribution Definition](#Add_def)
-    - [Existing Methods](#Existing_methods)
-        - [LIME](#LIME)
-        - [DeepLIFT](#DeepLIFT)
-        - [Shapley values](#Shapley_values)
-        - [SHAP values](#SHAP_values)
+- [Interpretable model](#Interpretable-model)
+    - [Additive Feature Attribution Definition](#Additive-Feature-Attribution-Definition)
+    - [Existing Methods](#Existing-Methods)
+        - [LIME](#1.-LIME)
+        - [DeepLIFT](#2.-DeepLIFT)
+        - [Shapley values](#3.-Shapley-values)
+        - [SHAP values](#4.-SHAP-values)
 
-- [SHAP Implementation](#SHAP_Implementation)
+- [SHAP Implementation](#SHAP-Implementation)
 
-## [Introduction](#Introduction)
+## Introduction
 **Model interpretability** can be quite important in many applications. Take health care industry for example, if a machine learning model shows the reason why it classifies a patient to the high risk group of heart disease, then doctors would be able to check out the reasonableness of the result from the model, which increase the user trust. Besides, interpretability also provides the insight for users to improve the model.
 
-### [Trade off between interpretability & accuracy](#Trade_off)
+### Trade off between interpretability and accuracy
 As mentioned above, interpretability is crutial to a machine learning model. It is always easy for a simple model(e.g., Linear regression) to interpret the relationship between inputs and outputs through global level feature importance; however, for complex models like deep network, they usually have low interpretability even though their accuracy is much better than simple models. Hence, here comes out an issue: trade off between interpretability and accuracy. For the most part, there is non-linear relationship between features, which made complex models more suitable for prediction. Therefore, some explanation models(g) are created to do the interpretation from **local level feature importance** for complex models(f). Instead of trying to interpret the whole complex model, the explanation models(g) interpret how the complex model behaved for one data point.
 
 <p align="center">
 <img src="./image/Trade_off.png" alt="Trade off between interpretability & accuracy" title="Trade off between interpretability & accuracy" width="500">
 </p>
 
-### [Feature importance](#Feature_importance)
+### Feature importance
 Feature importance shows the contribution of each feature and interprets the result of machine learning models. There are two ways to calculate feature importances: 
 1. Global level (Overall importance): calculate the influence of X(feature) in a **model**’s prediction (E.g., Gini, GR……)
 2. Local level (By-instacne importance): calculate the influence of X(feature) in a **specific sample**’s prediction, which means that different sample may have different feature importance.
 
-## [Interpretable model](#Interpretable_model)
-### [Additive Feature Attribution Definition](#Add_def)
+## Interpretable model
+### Additive Feature Attribution Definition
 Explanation models use simpliﬁed inputs x' that map to the original inputs through a mapping function x = h<sub>𝑥</sub>(x').
 
 <p align="center">
@@ -48,9 +48,9 @@ x': Sample in interpretable representation
 z: Perturbed sample in original representation  
 z': Perturbed sample in interpretable representation 
 
-### [Existing Methods](#Existing_methods)
-#### [1.](#LIME) [LIME(Local interpretable model-agnostic explanations)](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf):
-LIME is a **Model-Agnostic Approximations** which locally approximate a simple model(explanation model) to a sample by perturbing the input and see how the predictions change. According to the figure showing below, the explanation model which is built for the sample, is not suitable for the whole complex model but can perform well in local level.
+### Existing Methods
+#### 1. [LIME](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf)
+LIME(Local interpretable model-agnostic explanations) is a **Model-Agnostic Approximations** which locally approximate a simple model(explanation model) to a sample by perturbing the input and see how the predictions change. According to the figure showing below, the explanation model which is built for the sample, is not suitable for the whole complex model but can perform well in local level.
 
 <p align="center">
 <img src="./image/LIME.png" alt="LIME" title="LIME" width="500">
@@ -101,7 +101,7 @@ z': Perturbed sample in interpretable representation
 𝜋<sub>𝑥</sub>(z): Proximity measure between an instance z to x  
 D: Distance function (e.g., cosine distance for text, L2 distance for images)
 
-#### [2.](#DeepLIFT) [DeepLIFT](https://arxiv.org/abs/1704.02685): 
+#### 2. [DeepLIFT](https://arxiv.org/abs/1704.02685)
 DeepLIFT is a **Model-Speciﬁc Approximations** which is used for deep learning model. DeepLIFT can be viewd as an improved version of the gradient method. 
 
 **Gradient Example**  
@@ -145,7 +145,7 @@ Deciding the baseline inputs is crutial and might require domain expertise. Take
 Reference: [Interpretable Neural Networks](https://towardsdatascience.com/interpretable-neural-networks-45ac8aa91411)  
 Example & figure reference: [DeepLIFT Part 3: Nuts & Bolts (1)](https://www.youtube.com/watch?v=f_iAM0NPwnM&list=PLJLjQOkqSRTP3cLB2cOOi_bQFw6KPGKML&index=3)
 
-#### [3.](Shapley_values) Shapley value: 
+#### 3. Shapley values
 Shapley value is a solution concept in cooperative game theory, which is used to divide the reward for each player according to their contributions. In machine learning model, shapley value can be viewed as average marginal contribution to calculate the importance of a feature by comparing what a model predicts with and without the feature. The order in which a model sees features can affect its predictions, hence every possible order should be considered when calculate shapley values.
 
 <p align="center">
@@ -168,8 +168,8 @@ Young (1985) had proved that Shapley values are the only set of values that sati
 
 Reference: [Interpreting complex models with SHAP values](https://medium.com/@gabrieltseng/interpreting-complex-models-with-shap-values-1c187db6ec83)
 
-#### [4.](#SHAP) [SHAP(SHapley Additive exPlanations) values](http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions):
-Since every possible orders should be considered in shapley values, when there is lots of features, it will be computationally unfeasible for calculating shapley values. Hence, SHAP values are introduced.
+#### 4. [SHAP values](http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions)
+Since every possible orders should be considered in shapley values, when there is lots of features, it will be computationally unfeasible for calculating shapley values. Hence, SHAP(SHapley Additive exPlanations) values are introduced.
 
 1. Kernel SHAP (Linear LIME + Shapley values): Kernal SHAP is a **Model-Agnostic Approximations** which makes Linear LIME recover Shapley values by adjusting loss function L, weighting kernel π<sub>x'</sub> and regularization term Ω.
 
@@ -187,7 +187,7 @@ Since every possible orders should be considered in shapley values, when there i
 m: Multiplier (slope)  
 𝝓<sub>i</sub>: Contribution of feature i
 
-## [SHAP Implementation](#SHAP_Implementation)
+## SHAP Implementation
 Here is the implementation about an application of SHAP values.
 
 [Dataset Info.]
