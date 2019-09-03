@@ -192,12 +192,12 @@ m: Multiplier (slope)
 ## SHAP Implementation
 Here is the implementation about an application of SHAP values.
 
-[Dataset Info.]
-Source: Kaggle-Datasets
-Dataset: Faulty Steel Plates
-Features(x): 27 (25 continuous; 2 category) 
-Target(y): 7 classes of defects (six types + "other") 
-Sample size: 1941 
+**Dataset Info.**
+Source: Kaggle-Datasets  
+Dataset: Faulty Steel Plates  
+Features(x): 27 (25 continuous; 2 category)  
+Target(y): 7 classes of defects (six types + "other")  
+Sample size: 1941  
 
 
 ```
