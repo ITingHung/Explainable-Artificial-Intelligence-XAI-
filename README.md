@@ -1,4 +1,4 @@
-# Interpretable models introduction
+# Introduction to Interpretable Models
 
 **Table of Contents**
 - [Introduction](#Introduction)
