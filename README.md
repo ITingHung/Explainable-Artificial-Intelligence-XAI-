@@ -173,4 +173,87 @@ m: Multiplier (slope)
 𝝓<sub>i</sub>: Contribution of feature i
 
 ## SHAP Implementation
-Below is the implementation about an application of SHAP value.
+Here is the implementation about an application of SHAP value.
+
+[Dataset Info.]
+Source: Kaggle-Datasets
+Dataset: Faulty Steel Plates
+Features(x): 27 (25 continuous; 2 category) 
+Target(y): 7 classes of defects (six types + "other") 
+Sample size: 1941 
+
+Below shows the result of the prediction from Random Forest Classifier:
+
+```
+from sklearn.ensemble import RandomForestClassifier
+rfc = RandomForestClassifier(n_estimators=100,random_state = 0)
+rfc.fit(x_train, y_train)
+y_predict = rfc.predict(x_test)
+
+y_predict_train= rfc.predict(x_train)
+
+from sklearn.metrics import classification_report
+print(classification_report(y_test,y_predict))
+
+from sklearn.metrics import confusion_matrix
+from mlxtend.plotting import plot_confusion_matrix
+cm = confusion_matrix(y_test,y_predict)
+plt.figure()
+plot_confusion_matrix(cm)
+
+from sklearn.metrics import precision_recall_fscore_support
+test_score = precision_recall_fscore_support(y_test,y_predict,average='macro')
+train_score = precision_recall_fscore_support(y_train,y_predict_train,average='macro')
+print("Total testing score: {}".format(test_score))
+print("Total training score: {}".format(train_score))
+```
+
+precision | recall | f1-score 
+:--------:|:------:|:--------:
+0.843     | 0.796  | 0.815
+
+<p align="center">
+<img src="./Original_CM.png" alt="Original_CM" title="Original_CM" width="500">
+</p>
+
+Since there is confuse between the first class "Bumps" and the forth class "Other_Faults", the use of SHAP values could help to show the reason of the misclassification.  
+
+```
+import shap
+
+# explain the model's predictions using SHAP values
+explainer = shap.TreeExplainer(rfc_new)
+shap_values = explainer.shap_values(x_test_new)
+```
+
+Because Random Forest Classifier is choosen in this example, here I use [TressExplainer](https://arxiv.org/abs/1905.04610) for calculate SHAP values. Below visualizes the error prediction's explanation.
+
+```
+# load JS visualization code to notebook
+shap.initjs()
+
+# SHAP values for predicting as "Bumps"
+shap.force_plot(explainer.expected_value[0], shap_values[0][13,:], x_test_new_reindex.iloc[13,:])
+
+# SHAP values for predicting as "Other_Faults"
+shap.force_plot(explainer.expected_value[1], shap_values[1][13,:], x_test_new_reindex.iloc[13,:])
+```
+
+<p align="center">
+<img src="./visualSHAP_Bumps.png" alt="visualSHAP_Bumps" title="visualSHAP_Bumps" width="500">
+</p>
+
+<p align="center">
+<img src="./visualSHAP_OFaults.png" alt="visualSHAP_OFaults" title="visualSHAP_OFaults" width="500">
+</p>
+
+Record the top five features that misleading the probability of classification in each error predicted sample. 
+
+
+
+
+
+
+
+
+
