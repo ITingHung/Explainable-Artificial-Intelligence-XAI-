@@ -240,7 +240,18 @@ precision | recall | f1-score
 :--------:|:------:|:--------:
 0.843     | 0.796  | 0.815
 
-Since there is confuse between the first class "Bumps" and the forth class "Other_Faults", the use of SHAP values can help to show the reason of the misclassification.  
+Since there is confuse between the first class "Bumps" and the forth class "Other_Faults", I extract samples in these two classes to rebuild an new model for them. Below shows the result of the prediction from the new Random Forest Classifier:
+
+<p>
+<img src="./image/TwoClass_CM.png" alt="TwoClass_CM" title="TwoClass_CM" width="700">
+</p>
+
+precision | recall | f1-score 
+:--------:|:------:|:--------:
+0.701     | 0.703  | 0.706
+
+
+Then we can use SHAP values to help show the reason of the misclassification.  
 
 ```
 import shap
@@ -291,7 +302,7 @@ shap.force_plot(explainer.expected_value[1], shap_values[1][13,:], x_test_new_re
 <img src="./image/visualSHAP_OFaults.png" alt="visualSHAP_OFaults" title="visualSHAP_OFaults" width="1000">
 </p>
 
-To find out the reason of misclassification, extract top five features that mislead the probability of classification in each error predicted sample, and then calculates the frequency of these features.
+To find out the reason of misclassification, I extract top five features that mislead the probability of classification in each error predicted sample, and then calculate the frequency of these features.
 
 ```
 #  extract top five features that mislead the probability of classification
@@ -313,5 +324,31 @@ for i in ['1st','2nd','3rd','4th','5th']:
     counter_t += Counter(false_t[i].value_counts().to_dict())
 ```
 
+In order to check out how large do each feature misleads the result, here I plot out the frequency of features.
 
+```
+# plot the frequency of features
+plt.figure()
+plt.plot(np.array(counter_t.most_common())[:,1])
+plt.xlabel('Feature')
+plt.ylabel('Frequency')
+```
 
+<p align="center">
+<img src="./image/Feature_frequency.png" alt="Feature_frequency" title="Feature_frequency" width="1000">
+</p>
+
+Top 10 features that mislead the prediction result: 
+
+Rank | Feature 
+:---:|:------------:
+1    | Square_Index
+2    | TypeOfSteel 
+3    | Y_Maximum 
+4    | Edges_Y_Index 
+5    | Empty_Index 
+6    | Edges_X_Index 
+7    | Y_Minimum 
+8    | Orientation_Index
+9    | Length_of_Conveyer
+10   | Minimum_of_Luminosity
