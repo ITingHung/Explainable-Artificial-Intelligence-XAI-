@@ -1,7 +1,7 @@
 # Interpretable models introduction
 
 ## Introduction
-**Model interpretability** can be quite important in many applications. Take health care industry for example, if a machine leanring model shows the reason why it classifies a patient to the high risk group of heart disease, then doctors would be able to check out the reasonableness of the result from the model, which increase the user trust. Besides, interpretability also provides the insight for users to improve the model.
+**Model interpretability** can be quite important in many applications. Take health care industry for example, if a machine learning model shows the reason why it classifies a patient to the high risk group of heart disease, then doctors would be able to check out the reasonableness of the result from the model, which increase the user trust. Besides, interpretability also provides the insight for users to improve the model.
 
 ### Trade off between interpretability & accuracy
 As mentioned above, interpretability is crutial to a machine learning model. It is always easy for a simple model(e.g., Linear regression) to interpret the relationship between inputs and outputs through global level feature importance; however, for complex models like deep network, they usually have low interpretability even though their accuracy is much better than simple models. Hence, here comes out an issue: trade off between interpretability and accuracy. For the most part, there is non-linear relationship between features, which made complex models more suitable for prediction. Therefore, some explanation models(g) are created to do the interpretation from **local level feature importance** for complex models(f). Instead of trying to interpret the whole complex model, the explanation models(g) interpret how the complex model behaved for one data point.
@@ -49,7 +49,7 @@ Consider a frog image was classified by a complex model, the result shows that "
 <img src="./image/LIME_complex result.png" alt="LIME_complex result" title="LIME_complex result" width="500">
 </p>
 
-In order to interpret the result from the complex model, we use LIME method to build up an explanation model. The first step is to seperate the original image into several interpretable components, which can be viewed as features. Here we use "pixels" for the original image, and "super pixels" for the interpretable components. The super pixel is represent in binary, if an interpretabe component exists in the sample, the value would be 1, if it doesn't the value would be 0. The next step is to randomly pertub the super pixels by turning them off(make the component into gray), then we could get a number of pertubed instances.
+In order to interpret the result from the complex model, we use LIME method to build up an explanation model. The first step is to seperate the original image into several interpretable components, which can be viewed as features. Here we use "pixels" for the original image, and "super pixels" for interpretable components. The super pixel is represent in binary, if an interpretabe component exists in the sample, the value would be 1, if it doesn't the value would be 0. The next step is to pertub the super pixels by randomly turn off interpretable components(in this example, make them into gray), then we could get a number of pertubed instances.
 
 <p align="center">
 <img src="./image/LIME_preturb.png" alt="LIME_preturb" title="LIME_preturb" width="500">
@@ -61,7 +61,7 @@ In the third step, we use the complex model to classify those pertubed instances
 <img src="./image/LIME_preturb in complex.png" alt="LIME_preturb in complex" title="LIME_preturb in complex" width="500">
 </p>
 
-The last step is to build an explanation model through the interpretable components(super pixels) while consider the prediction result from the complex model as the ture target.
+The last step is to build an explanation model through the prediction result of the interpretable components(super pixels) in complex model.
 
 <p align="center">
 <img src="./image/LIME_super pixel.png" alt="LIME_super pixel" title="LIME_super pixel" width="500">
@@ -87,7 +87,7 @@ z': Perturbed sample in interpretable representation
 D: Distance function (e.g., cosine distance for text, L2 distance for images)
 
 #### 2. [DeepLIFT](https://arxiv.org/abs/1704.02685): 
-DeepLIFT is a **Model-Speciﬁc Approximations** which is used for deep learning model. DeepLIFT can be viewd as an improved version of the gradient. 
+DeepLIFT is a **Model-Speciﬁc Approximations** which is used for deep learning model. DeepLIFT can be viewd as an improved version of the gradient method. 
 
 **Gradient Example**  
 In the gradient method, the feature contribution is calculated by multiplying the input(x) with the weight: 
@@ -96,22 +96,22 @@ In the gradient method, the feature contribution is calculated by multiplying th
 <img src="./image/DeepLIFT_gradient feature importance.png" alt="DeepLIFT_gradient feature importance" title="DeepLIFT_gradient feature importance" width="500">
 </p>
 
-In linear regression, it is reasonable to calculate feature contributions from the gradient; however it is not suitable for nonlinear models. Below is an example that shows the problem the gradient encounters in a nonlinear model:  
+In linear regression, it is reasonable to calculate feature contributions from the gradient method; however the method is not suitable for nonlinear models. Below is an example that shows the problem the gradient encounters in a nonlinear model:  
 
 <p align="center">
 <img src="./image/DeepLIFT_gradient.png" alt="DeepLIFT_gradient" title="DeepLIFT_gradient" width="500">
 </p>
 
-Because there is bias in h<sub>2</sub> function, the contribution calculate from the gradient method is unreasonalble to the actual output. DeepLIFT is introduced to solve the problem mentioned above. 
+Because there is bias in h<sub>2</sub> function, the contribution calculated from the gradient method is unreasonalble to the actual output. DeepLIFT is introduced to solve the problem mentioned above. 
 
 **DeepLIFT Example**  
-DeepLIFT consider the slope instead of the gradient, hence the feature importance becomes:
+Instead of considering the gradient, DeepLIFT considers the slope, hence the feature importance becomes:
 
 <p align="center">
 <img src="./image/DeepLIFT_feature importance.png" alt="DeepLIFT_feature importance" title="DeepLIFT_feature importance" width="300">
 </p>
 
-Below is the same example that uses DeepLIFT to calculate the feature contribution:  
+Below is the same example that calculates feature contributionuses by DeepLIFT:  
 
 <p align="center">
 <img src="./image/DeepLIFT.png" alt="DeepLIFT" title="DeepLIFT" width="500">
@@ -131,7 +131,7 @@ Reference: [Interpretable Neural Networks](https://towardsdatascience.com/interp
 Example & figure reference: [DeepLIFT Part 3: Nuts & Bolts (1)](https://www.youtube.com/watch?v=f_iAM0NPwnM&list=PLJLjQOkqSRTP3cLB2cOOi_bQFw6KPGKML&index=3)
 
 #### 3. Shapley value: 
-Shapley value is a solution concept in cooperative game theory used to divide the reward for each player according to their contributions. In machine learning model, shapley value can be viewed as average marginal contribution to calculate the importance of a feature by comparing what a model predicts with and without the feature. The order in which a model sees features can affect its predictions, hence every possible order should be considered.
+Shapley value is a solution concept in cooperative game theory, which is used to divide the reward for each player according to their contributions. In machine learning model, shapley value can be viewed as average marginal contribution to calculate the importance of a feature by comparing what a model predicts with and without the feature. The order in which a model sees features can affect its predictions, hence every possible order should be considered when calculate shapley values.
 
 <p align="center">
 <img src="./image/Shapley_value.png" alt="Shapley_value" title="Shapley_value" width="500">
@@ -156,7 +156,7 @@ Reference: [Interpreting complex models with SHAP values](https://medium.com/@ga
 #### 4. [SHAP(SHapley Additive exPlanations) values](http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions):
 Since every possible orders should be considered in shapley values, when there is lots of features, it will be computationally unfeasible for calculating shapley values. Hence, SHAP values are introduced.
 
-1. Kernel SHAP (Linear LIME + Shapley values): Kernal SHAP is a **Model-Agnostic Approximations** which makes Linear LIME recovers the Shapley values by adjusting loss function L, weighting kernel π<sub>x'</sub> and regularization term Ω.
+1. Kernel SHAP (Linear LIME + Shapley values): Kernal SHAP is a **Model-Agnostic Approximations** which makes Linear LIME recover Shapley values by adjusting loss function L, weighting kernel π<sub>x'</sub> and regularization term Ω.
 
 <p align="center">
 <img src="./image/Kernal SHAP_objective function.png" alt="Kernal SHAP_objective function" title="Kernal SHAP_objective function" width="500">
@@ -173,7 +173,7 @@ m: Multiplier (slope)
 𝝓<sub>i</sub>: Contribution of feature i
 
 ## SHAP Implementation
-Here is the implementation about an application of SHAP value.
+Here is the implementation about an application of SHAP values.
 
 [Dataset Info.]
 Source: Kaggle-Datasets
@@ -207,7 +207,7 @@ x = df.copy().drop(columns=['Defected_type'])
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state = 10)
 ```
 
-Below shows the result of the prediction from Random Forest Classifier:
+Below shows the result of the prediction from a Random Forest Classifier:
 
 ```
 from sklearn.ensemble import RandomForestClassifier
@@ -251,7 +251,7 @@ precision | recall | f1-score
 0.701     | 0.703  | 0.706
 
 
-Then we can use SHAP values to help show the reason of the misclassification.  
+To know the reason of the misclassification between these two classes, we can use SHAP values to find out the features that mislead the model in each misclassified sample.
 
 ```
 import shap
@@ -302,7 +302,7 @@ shap.force_plot(explainer.expected_value[1], shap_values[1][13,:], x_test_new_re
 <img src="./image/visualSHAP_OFaults.png" alt="visualSHAP_OFaults" title="visualSHAP_OFaults" width="1000">
 </p>
 
-To find out the reason of misclassification, I extract top five features that mislead the probability of classification in each error predicted sample, and then calculate the frequency of these features.
+To find out the reason of misclassification, I extract top five features which mislead the result from all the error predicted samples, and then calculate the frequency of these features.
 
 ```
 #  extract top five features that mislead the probability of classification
@@ -324,7 +324,7 @@ for i in ['1st','2nd','3rd','4th','5th']:
     counter_t += Counter(false_t[i].value_counts().to_dict())
 ```
 
-Top 10 features that mislead the prediction result: 
+Below is the Top 10 features which mislead the prediction result: 
 
 Rank | Feature 
 :---:|:------------:
