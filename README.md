@@ -7,7 +7,7 @@
 As mentioned above, interpretability is crutial to a machine learning model. It is always easy for a simple model(e.g., Linear regression) to interpret the relationship between inputs and outputs through global level feature importance; however, for complex models like deep network, they usually have low interpretability even though their accuracy is much better than simple models. Hence, here comes out an issue: trade off between interpretability and accuracy. For the most part, there is non-linear relationship between features, which made complex models more suitable for prediction. Therefore, some explanation models(g) are created to do the interpretation from **local level feature importance** for complex models(f). Instead of trying to interpret the whole complex model, the explanation models(g) interpret how the complex model behaved for one data point.
 
 <p align="center">
-  <img src="./Trade_off.png" alt="Trade off between interpretability & accuracy" title="Trade off between interpretability & accuracy" width="500">
+<img src="./image/Trade_off.png" alt="Trade off between interpretability & accuracy" title="Trade off between interpretability & accuracy" width="500">
 </p>
 
 ### Feature importance
@@ -20,7 +20,7 @@ Feature importance shows the contribution of each feature and interprets the res
 Explanation models use simpliﬁed inputs x' that map to the original inputs through a mapping function x = h<sub>𝑥</sub>(x').
 
 <p align="center">
-  <img src="./Additive_definition.png" alt="Additive Feature Attribution Definition" title="Additive Feature Attribution Definition" width="500">
+  <img src="./image/Additive_definition.png" alt="Additive Feature Attribution Definition" title="Additive Feature Attribution Definition" width="500">
 </p>
 
 Summing all the effects 𝝓 in explanation model(g) approximates the output of the original model(f).
@@ -38,7 +38,7 @@ z': Perturbed sample in interpretable representation
 LIME is a **Model-Agnostic Approximations** which locally approximate a simple model(explanation model) to a sample by perturbing the input and see how the predictions change. According to the figure showing below, the explanation model which is built for the sample, is not suitable for the whole complex model but can perform well in local level.
 
 <p align="center">
-<img src="./LIME.png" alt="LIME" title="LIME" width="500">
+<img src="./image/LIME.png" alt="LIME" title="LIME" width="500">
 </p>
 
 **LIME Example: find an explanation model for an image**
@@ -46,25 +46,25 @@ LIME is a **Model-Agnostic Approximations** which locally approximate a simple m
 Consider a frog image was classified by a complex model, the result shows that "tree frog" is the most likely class, followed by "pool table" and "balloon" with lower probabilities.
 
 <p align="center">
-<img src="./LIME_complex result.png" alt="LIME_complex result" title="LIME_complex result" width="500">
+<img src="./image/LIME_complex result.png" alt="LIME_complex result" title="LIME_complex result" width="500">
 </p>
 
 In order to interpret the result from the complex model, we use LIME method to build up an explanation model. The first step is to seperate the original image into several interpretable components, which can be viewed as features. Here we use "pixels" for the original image, and "super pixels" for the interpretable components. The super pixel is represent in binary, if an interpretabe component exists in the sample, the value would be 1, if it doesn't the value would be 0. The next step is to randomly pertub the super pixels by turning them off(make the component into gray), then we could get a number of pertubed instances.
 
 <p align="center">
-<img src="./LIME_preturb.png" alt="LIME_preturb" title="LIME_preturb" width="500">
+<img src="./image/LIME_preturb.png" alt="LIME_preturb" title="LIME_preturb" width="500">
 </p>
 
 In the third step, we use the complex model to classify those pertubed instances and get the prediction result. 
 
 <p align="center">
-<img src="./LIME_preturb in complex.png" alt="LIME_preturb in complex" title="LIME_preturb in complex" width="500">
+<img src="./image/LIME_preturb in complex.png" alt="LIME_preturb in complex" title="LIME_preturb in complex" width="500">
 </p>
 
 The last step is to build an explanation model through the interpretable components(super pixels) while consider the prediction result from the complex model as the ture target.
 
 <p align="center">
-<img src="./LIME_super pixel.png" alt="LIME_super pixel" title="LIME_super pixel" width="500">
+<img src="./image/LIME_super pixel.png" alt="LIME_super pixel" title="LIME_super pixel" width="500">
 </p>
 
 Example & figure reference: [Local Interpretable Model-Agnostic Explanations (LIME): An Introduction](https://www.oreilly.com/learning/introduction-to-local-interpretable-model-agnostic-explanations-lime)
@@ -72,7 +72,7 @@ Example & figure reference: [Local Interpretable Model-Agnostic Explanations (LI
 **LIME Objective function**
 
 <p align="center">
-<img src="./LIME_objective function.png" alt="LIME_objective function" title="LIME_objective function" width="500">
+<img src="./image/LIME_objective function.png" alt="LIME_objective function" title="LIME_objective function" width="500">
 </p>
 
 [Notation]  
@@ -93,13 +93,13 @@ DeepLIFT is a **Model-Speciﬁc Approximations** which is used for deep learning
 In the gradient method, the feature contribution is calculated by multiplying the input(x) with the weight: 
 
 <p align="center">
-<img src="./DeepLIFT_gradient feature importance.png" alt="DeepLIFT_gradient feature importance" title="DeepLIFT_gradient feature importance" width="500">
+<img src="./image/DeepLIFT_gradient feature importance.png" alt="DeepLIFT_gradient feature importance" title="DeepLIFT_gradient feature importance" width="500">
 </p>
 
 In linear regression, it is reasonable to calculate feature contributions from the gradient; however it is not suitable for nonlinear models. Below is an example that shows the problem the gradient encounters in a nonlinear model:  
 
 <p align="center">
-<img src="./DeepLIFT_gradient.png" alt="DeepLIFT_gradient" title="DeepLIFT_gradient" width="500">
+<img src="./image/DeepLIFT_gradient.png" alt="DeepLIFT_gradient" title="DeepLIFT_gradient" width="500">
 </p>
 
 Because there is bias in h<sub>2</sub> function, the contribution calculate from the gradient method is unreasonalble to the actual output. DeepLIFT is introduced to solve the problem mentioned above. 
@@ -108,13 +108,13 @@ Because there is bias in h<sub>2</sub> function, the contribution calculate from
 DeepLIFT consider the slope instead of the gradient, hence the feature importance becomes:
 
 <p align="center">
-<img src="./DeepLIFT_feature importance.png" alt="DeepLIFT_feature importance" title="DeepLIFT_feature importance" width="300">
+<img src="./image/DeepLIFT_feature importance.png" alt="DeepLIFT_feature importance" title="DeepLIFT_feature importance" width="300">
 </p>
 
 Below is the same example that uses DeepLIFT to calculate the feature contribution:  
 
 <p align="center">
-<img src="./DeepLIFT.png" alt="DeepLIFT" title="DeepLIFT" width="500">
+<img src="./image/DeepLIFT.png" alt="DeepLIFT" title="DeepLIFT" width="500">
 </p>
 
 [Notation]  
@@ -124,7 +124,7 @@ C: Feature Importance
 Deciding the baseline inputs is crutial and might require domain expertise. Take MNIST digits dataset for example, since all the images are white digit with black background, it is reasonable to choose a black image as the baseline.
 
 <p align="center">
-<img src="./DeepLIFT_baseline.png" alt="DeepLIFT_baseline" title="DeepLIFT_baseline" width="300">
+<img src="./image/DeepLIFT_baseline.png" alt="DeepLIFT_baseline" title="DeepLIFT_baseline" width="300">
 </p>
 
 Reference: [Interpretable Neural Networks](https://towardsdatascience.com/interpretable-neural-networks-45ac8aa91411)  
@@ -134,7 +134,7 @@ Example & figure reference: [DeepLIFT Part 3: Nuts & Bolts (1)](https://www.yout
 Shapley value is a solution concept in cooperative game theory used to divide the reward for each player according to their contributions. In machine learning model, shapley value can be viewed as average marginal contribution to calculate the importance of a feature by comparing what a model predicts with and without the feature. The order in which a model sees features can affect its predictions, hence every possible order should be considered.
 
 <p align="center">
-<img src="./Shapley_value.png" alt="Shapley_value" title="Shapley_value" width="500">
+<img src="./image/Shapley_value.png" alt="Shapley_value" title="Shapley_value" width="500">
 </p>
 
 [Notation]  
@@ -159,13 +159,13 @@ Since every possible orders should be considered in shapley values, when there i
 1. Kernel SHAP (Linear LIME + Shapley values): Kernal SHAP is a **Model-Agnostic Approximations** which makes Linear LIME recovers the Shapley values by adjusting loss function L, weighting kernel π<sub>x'</sub> and regularization term Ω.
 
 <p align="center">
-<img src="./Kernal SHAP_objective function.png" alt="Kernal SHAP_objective function" title="Kernal SHAP_objective function" width="500">
+<img src="./image/Kernal SHAP_objective function.png" alt="Kernal SHAP_objective function" title="Kernal SHAP_objective function" width="500">
 </p>
 
 2. Deep SHAP (DeepLIFT + Shapley values): Deep SHAP is a **Model-Specific Approximations** which is adapted from DeepLIFT to approximate Shapley values for deep learning models. Deep SHAP recursively passing multipliers backwards through the network to combine SHAP values of smaller components into SHAP values for the whole network.
 
 <p align="center">
-<img src="./DeepSHAP.png" alt="DeepSHAP" title="DeepSHAP" width="500">
+<img src="./image/DeepSHAP.png" alt="DeepSHAP" title="DeepSHAP" width="500">
 </p>
 
 [Notation]  
@@ -209,7 +209,7 @@ print("Total training score: {}".format(train_score))
 ```
 
 <p>
-<img src="./Original_CM.png" alt="Original_CM" title="Original_CM" width="700">
+<img src="./image/Original_CM.png" alt="Original_CM" title="Original_CM" width="700">
 </p>
 
 precision | recall | f1-score 
@@ -240,11 +240,11 @@ shap.force_plot(explainer.expected_value[1], shap_values[1][13,:], x_test_new_re
 ```
 
 <p align="center">
-<img src="./visualSHAP_Bumps.png" alt="visualSHAP_Bumps" title="visualSHAP_Bumps" width="1000">
+<img src="./image/visualSHAP_Bumps.png" alt="visualSHAP_Bumps" title="visualSHAP_Bumps" width="1000">
 </p>
 
 <p align="center">
-<img src="./visualSHAP_OFaults.png" alt="visualSHAP_OFaults" title="visualSHAP_OFaults" width="1000">
+<img src="./image/visualSHAP_OFaults.png" alt="visualSHAP_OFaults" title="visualSHAP_OFaults" width="1000">
 </p>
 
 Record the top five features that mislead the probability of classification in each error predicted sample.
