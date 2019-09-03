@@ -182,6 +182,31 @@ Features(x): 27 (25 continuous; 2 category)
 Target(y): 7 classes of defects (six types + "other") 
 Sample size: 1941 
 
+
+```
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+# read dataset
+df = pd.read_csv('faults.csv')
+
+# merge one hot encoded classes into a multiclass
+field = (df.iloc[:,-7:]==1).idxmax(1)
+df = df.drop(df.columns.values[-7:], axis = 1)
+df['Defected_type'] = field
+
+# drop redundant column
+df = df.drop('TypeOfSteel_A300', axis = 1)
+df = df.rename(columns = {'TypeOfSteel_A400':'TypeOfSteel'})
+
+# split data
+y = df['Defected_type']
+x = df.copy().drop(columns=['Defected_type'])
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state = 10)
+```
+
 Below shows the result of the prediction from Random Forest Classifier:
 
 ```
@@ -189,7 +214,6 @@ from sklearn.ensemble import RandomForestClassifier
 rfc = RandomForestClassifier(n_estimators=100,random_state = 0)
 rfc.fit(x_train, y_train)
 y_predict = rfc.predict(x_test)
-
 y_predict_train= rfc.predict(x_train)
 
 from sklearn.metrics import classification_report
@@ -226,6 +250,26 @@ explainer = shap.TreeExplainer(rfc_new)
 shap_values = explainer.shap_values(x_test_new)
 ```
 
+```
+# extract sample in "Bumps" and "Other_Faults"
+df.loc[~df.loc[:,'Defected_type'].isin(['Bumps','Other_Faults']),'Defected_group']='Ex_B.O'
+df.loc[df.loc[:,'Defected_type'].isin(['Bumps','Other_Faults']),'Defected_group']='In_B.O'
+y_new = df.loc[df['Defected_group']=='In_B.O']['Defected_type']
+x_new = df.loc[df['Defected_group']=='In_B.O'].copy().drop(columns=['Defected_type','Defected_group'])
+
+# split data
+x_train_new, x_test_new, y_train_new, y_test_new = train_test_split(x_new, y_new, test_size = 0.2, random_state = 10)
+y_test_new_reindex = y_test_new.reset_index(drop=True)
+x_test_new_reindex = x_test_new.reset_index(drop=True)
+
+# extract misclassified samples
+false_info = []
+for i in range(len(y_test_new)):
+    if y_test_new_reindex[i] != y_predict_new[i]:
+        false_info.append([i,y_predict_new[i]])
+false_df = pd.DataFrame(false_info, columns=['id','false_type'])
+```
+
 Because Random Forest Classifier is choosen in this example, here I use [TressExplainer](https://arxiv.org/abs/1905.04610) for calculate SHAP values. Below visualizes the error prediction's explanation.
 
 ```
@@ -247,7 +291,27 @@ shap.force_plot(explainer.expected_value[1], shap_values[1][13,:], x_test_new_re
 <img src="./image/visualSHAP_OFaults.png" alt="visualSHAP_OFaults" title="visualSHAP_OFaults" width="1000">
 </p>
 
-Record the top five features that mislead the probability of classification in each error predicted sample.
+To find out the reason of misclassification, extract top five features that mislead the probability of classification in each error predicted sample.
+
+```
+#
+topfive_index = []
+j=0
+for i in range(len(false_info)):
+    if false_info[i][1] == 'Bumps':
+        topfive_index.append(np.argsort(shap_values[0][false_info[i][0],:])[-5:][::-1])
+    else:
+        topfive_index.append(np.argsort(shap_values[1][false_info[i][0],:])[-5:][::-1])
+topfive_df = pd.DataFrame(topfive_index, columns=['1st','2nd','3rd','4th','5th'])
+topfive_df.head()
+```
+
+
+
+
+
+
+
 
 
 
