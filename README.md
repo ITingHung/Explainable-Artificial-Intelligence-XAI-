@@ -324,20 +324,6 @@ for i in ['1st','2nd','3rd','4th','5th']:
     counter_t += Counter(false_t[i].value_counts().to_dict())
 ```
 
-In order to check out how large do each feature misleads the result, here I plot out the frequency of features.
-
-```
-# plot the frequency of features
-plt.figure()
-plt.plot(np.array(counter_t.most_common())[:,1])
-plt.xlabel('Feature')
-plt.ylabel('Frequency')
-```
-
-<p align="center">
-<img src="./image/Feature_frequency.png" alt="Feature_frequency" title="Feature_frequency" width="1000">
-</p>
-
 Top 10 features that mislead the prediction result: 
 
 Rank | Feature 
