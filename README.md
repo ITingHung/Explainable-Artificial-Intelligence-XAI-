@@ -207,13 +207,14 @@ train_score = precision_recall_fscore_support(y_train,y_predict_train,average='m
 print("Total testing score: {}".format(test_score))
 print("Total training score: {}".format(train_score))
 ```
+
+<p>
+<img src="./Original_CM.png" alt="Original_CM" title="Original_CM" width="700">
+</p>
+
 precision | recall | f1-score 
 :--------:|:------:|:--------:
 0.843     | 0.796  | 0.815
-
-<p>
-<img src="./Original_CM.png" alt="Original_CM" title="Original_CM" width="300">
-</p>
 
 Since there is confuse between the first class "Bumps" and the forth class "Other_Faults", the use of SHAP values could help to show the reason of the misclassification.  
 
@@ -246,7 +247,7 @@ shap.force_plot(explainer.expected_value[1], shap_values[1][13,:], x_test_new_re
 <img src="./visualSHAP_OFaults.png" alt="visualSHAP_OFaults" title="visualSHAP_OFaults" width="1000">
 </p>
 
-Record the top five features that misleading the probability of classification in each error predicted sample. 
+Record the top five features that mislead the probability of classification in each error predicted sample.
 
 
 
