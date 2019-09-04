@@ -1,5 +1,3 @@
-<div style="text-align: justify"> 
-
 # Introduction to Interpretable Models
 **Table of Contents**
 - [Introduction](#Introduction)
@@ -364,6 +362,4 @@ LIME: [“Why Should I Trust You?” Explaining the Predictions of Any Classifie
 DeepLIFT: [Learning Important Features Through Propagating Activation Differences](https://arxiv.org/abs/1704.02685)  
 SHAP Values: [A Unified Approach to Interpreting Model Predictions](http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions)  
 TreeExplainer: [Explainable AI for Trees: From Local Explanations to Global Understanding](https://arxiv.org/abs/1905.04610)
-
-</div>
 
