@@ -1,4 +1,4 @@
-# Introduction to Interpretable Models
+# XAI Introduction to Interpretable Models
 **Table of Contents**
 - [Introduction](#Introduction)
     - [Trade off between interpretability and accuracy](#Trade-off-between-interpretability-and-accuracy)
