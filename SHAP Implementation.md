@@ -1,5 +1,5 @@
 ## SHAP Implementation
-Here is the implementation about an application of SHAP values.
+Here shows the implementation to SHAP values.
 
 **Dataset Info.**
 Source: Kaggle-Datasets  
