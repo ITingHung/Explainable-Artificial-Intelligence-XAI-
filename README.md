@@ -3,7 +3,7 @@
 ## Introduction
 Link | Last updated
 :---:|:------------:
-[Introduction to Exaplinable AI (XAI)](https://github.com/ITingHung/Introduction-to-Explainable-AI/blob/master/XAI%20Introduction%20to%20Interpretable%20Models.md) | 2019
+[Introduction to Exaplinable AI (XAI)](https://github.com/ITingHung/Introduction-to-Explainable-AI/blob/master/Introduction%20to%20Explainable%20AI%20(XAI).md) | 2019
 
 ## Implementation with Python
 Link | Last updated
