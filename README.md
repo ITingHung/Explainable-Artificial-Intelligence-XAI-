@@ -8,4 +8,4 @@ Link | Last updated
 ## Implementation with Python
 Link | Last updated
 :---:|:------------:
-[SHAP Implementation]() | 2019
+[SHAP Implementation](https://github.com/ITingHung/Introduction-to-Explainable-AI/blob/master/SHAP%20Implementation.md) | 2019
