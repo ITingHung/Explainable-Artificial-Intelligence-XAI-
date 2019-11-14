@@ -1,4 +1,4 @@
-# Introduction to Explainable AI
+# Introduction to Explainable AI (XAI)
 
 ## Introduction
 Link | Last updated
