@@ -14,7 +14,7 @@
          4. [SHAP values](#4-SHAP-values)
 - [Citations](#Citations)
 
-## Introduction
+## :pushpin:Introduction
 ### Importance of XAI
 Explainable AI, also known as XAI. In contrast to most of advanced AI models which are black boxes, XAI shows the **model interpretability**. In some cases, model interpretability can be quite important. Take health care industry for example, doctors can check out the reasonableness of the diagnosis result from XAI before trusting it. Besides, interpretability also provides insight for users to improve the AI model.
 
@@ -30,7 +30,7 @@ Feature importance shows the contribution of each feature and interprets the res
 1. Global level (Overall importance): calculate the influence of X(feature) in a **model**’s prediction (E.g., Gini, GR……)
 2. Local level (By-instacne importance): calculate the influence of X(feature) in a **specific sample**’s prediction, which means that different sample may have different feature importance.
 
-## XAI Model
+## :pushpin:XAI Model
 ### Additive Feature Attribution Definition
 Explanation models use simpliﬁed inputs x' that map to the original inputs through a mapping function x = h<sub>𝑥</sub>(x').
 
@@ -187,7 +187,7 @@ Since every possible orders should be considered in shapley values, when there i
 m: Multiplier (slope)  
 𝝓<sub>i</sub>: Contribution of feature i
 
-## Citations
+## :pushpin:Citations
 LIME: [“Why Should I Trust You?” Explaining the Predictions of Any Classifier
 ](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf)  
 DeepLIFT: [Learning Important Features Through Propagating Activation Differences](https://arxiv.org/abs/1704.02685)  
