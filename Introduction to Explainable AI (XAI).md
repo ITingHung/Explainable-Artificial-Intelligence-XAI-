@@ -1,5 +1,19 @@
 # Introduction to Explainable AI (XAI)
 **Table of Contents**
+- [Introduction](#Introduction)
+    - [Importance of XAI](#Importance-of-XAI)
+    - [Trade off between interpretability and accuracy](#Trade-off-between-interpretability-and-accuracy)
+    - [Feature importance](#Feature-importance)
+
+- [XAI Model](#XAI-Model)
+    - [Additive Feature Attribution Definition](#Additive-Feature-Attribution-Definition)
+    - [Existing Methods](#Existing-Methods)
+         1. [LIME](#1-LIME)
+         2. [DeepLIFT](#2-DeepLIFT)
+         3. [Shapley values](#3-Shapley-values)
+         4. [SHAP values](#4-SHAP-values)
+- [Citations](#Citations)
+
 [Toc]
 
 ## :pushpin:Introduction
