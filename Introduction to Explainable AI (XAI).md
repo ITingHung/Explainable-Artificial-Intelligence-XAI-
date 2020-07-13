@@ -14,8 +14,6 @@
          4. [SHAP values](#4-SHAP-values)
 - [Citations](#Citations)
 
-[Toc]
-
 ## :pushpin:Introduction
 ### Importance of XAI
 Explainable AI, also known as XAI. In contrast to most of advanced AI models which are black boxes, XAI shows the **model interpretability**. In some cases, model interpretability can be quite important. Take health care industry for example, doctors can check out the reasonableness of the diagnosis result from XAI before trusting it. Besides, interpretability also provides insight for users to improve the AI model.
