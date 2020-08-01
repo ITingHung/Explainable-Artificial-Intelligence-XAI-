@@ -1,4 +1,4 @@
-# Introduction to Explainable AI (XAI)
+# Introduction to XAI (Explainable AI)
 
 ## :pushpin:Introduction
 Link | Last updated
