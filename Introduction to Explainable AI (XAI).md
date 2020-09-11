@@ -1,4 +1,4 @@
-# Introduction to XAI (Explainable Artificial Intelligence)
+# Introduction to XAI
 **Table of Contents**
 - [Introduction](#Introduction)
     - [Importance of XAI](#Importance-of-XAI)
