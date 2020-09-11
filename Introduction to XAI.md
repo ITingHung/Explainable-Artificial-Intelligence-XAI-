@@ -1,6 +1,6 @@
 # Introduction to XAI
 **Table of Contents**
-- [Introduction](#Introduction)
+- [Introduction](#:pushpin:Introduction)
     - [Importance of XAI](#Importance-of-XAI)
     - [Trade off between interpretability and accuracy](#Trade-off-between-interpretability-and-accuracy)
     - [Feature importance](#Feature-importance)
