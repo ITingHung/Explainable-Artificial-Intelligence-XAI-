@@ -3,7 +3,7 @@
 ## :pushpin:Introduction
 Link | Last updated
 :---:|:------------:
-[Introduction to Explainable Artificial Intelligence (XAI)](https://github.com/ITingHung/Introduction-to-Explainable-AI/blob/master/Introduction%20to%20Explainable%20AI%20(XAI).md) | 2019
+[Introduction to XAI](https://github.com/ITingHung/Introduction-to-Explainable-AI/blob/master/Introduction%20to%20Explainable%20AI%20(XAI).md) | 2019
 
 ## :pushpin:Implementation with Python
 Link | Last updated
