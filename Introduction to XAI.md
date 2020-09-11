@@ -30,7 +30,7 @@ Feature importance shows the contribution of each feature and interprets the res
 1. Global level (Overall importance): calculate the influence of X(feature) in a **model**’s prediction (E.g., Gini, GR……)
 2. Local level (By-instacne importance): calculate the influence of X(feature) in a **specific sample**’s prediction, which means that different sample may have different feature importance.
 
-## :pushpin:XAI Model
+## XAI Model
 ### Additive Feature Attribution Definition
 Explanation models use simpliﬁed inputs x' that map to the original inputs through a mapping function x = h<sub>𝑥</sub>(x').
 
@@ -187,7 +187,7 @@ Since every possible orders should be considered in shapley values, when there i
 m: Multiplier (slope)  
 𝝓<sub>i</sub>: Contribution of feature i
 
-## :pushpin:Citations
+## Citations
 LIME: [“Why Should I Trust You?” Explaining the Predictions of Any Classifier
 ](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf)  
 DeepLIFT: [Learning Important Features Through Propagating Activation Differences](https://arxiv.org/abs/1704.02685)  
