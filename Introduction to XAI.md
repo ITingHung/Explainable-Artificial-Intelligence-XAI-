@@ -64,7 +64,7 @@ Consider a frog image was classified by a complex model, the result shows that "
 <img src="./image/LIME_complex result.png" alt="LIME_complex result" title="LIME_complex result" width="500">
 </p>
 
-In order to interpret the result from the complex model, we use LIME method to build up an explanation model. The first step is to seperate the original image into several interpretable components, which can be viewed as features. Here we use "pixels" for the original image, and "super pixels" for interpretable components. The super pixel is represent in binary, if an interpretabe component exists in the sample, the value would be 1, if it doesn't the value would be 0. The next step is to pertub the super pixels by randomly turn off interpretable components(in this example, make them into gray), then we could get a number of pertubed instances.
+In order to interpret the result from the complex model, we use LIME method to build up an explanation model. The first step is to seperate the original image into several interpretable components, which can be viewed as features. Here we use "pixels" for the original image, and "super pixels" for interpretable components. The super pixel is represent in binary, if an interpretabe component exists in the sample, the value would be 1, if it doesn't the value would be 0. The next step is to pertub the super pixels by randomly turn off interpretable components (in this example, make them into gray), then we could get a number of pertubed instances.
 
 <p align="center">
 <img src="./image/LIME_preturb.png" alt="LIME_preturb" title="LIME_preturb" width="500">
@@ -76,7 +76,7 @@ In the third step, we use the complex model to classify those pertubed instances
 <img src="./image/LIME_preturb in complex.png" alt="LIME_preturb in complex" title="LIME_preturb in complex" width="500">
 </p>
 
-The last step is to build an explanation model through the prediction result of the interpretable components(super pixels) in complex model.
+The last step is to build an explanation model through the prediction result of the interpretable components (super pixels) in complex model.
 
 <p align="center">
 <img src="./image/LIME_super pixel.png" alt="LIME_super pixel" title="LIME_super pixel" width="500">
