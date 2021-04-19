@@ -50,7 +50,7 @@ z': Perturbed sample in interpretable representation
 
 ### Existing Methods
 #### 1. [LIME](https://www.kdd.org/kdd2016/papers/files/rfp0573-ribeiroA.pdf)
-LIME(Local interpretable model-agnostic explanations) is a **Model-Agnostic Approximations** which locally approximate a simple model(explanation model) to a sample by perturbing the input and see how the predictions change. According to the figure showing below, the explanation model which is built for the sample, is not suitable for the whole complex model but can perform well in local level.
+LIME (Local interpretable model-agnostic explanations) is a **Model-Agnostic Approximations** which locally approximate a simple model (explanation model) to a sample by perturbing the input and see how the predictions change. According to the figure showing below, the explanation model which is built for the sample, is not suitable for the whole complex model but can perform well in local level.
 
 <p align="center">
 <img src="./image/LIME.png" alt="LIME" title="LIME" width="500">
